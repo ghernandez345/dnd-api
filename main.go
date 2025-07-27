@@ -5,7 +5,7 @@ import (
 	"log/slog"
 )
 
-func loggingMiddleware(next http.Handler) http.Handler {
+func logger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		slog.Info("request", "method", req.Method, "url", req.URL)
 		next.ServeHTTP(w, req)
@@ -27,5 +27,5 @@ func main () {
 	mux.HandleFunc("/", testHandler)
 	mux.HandleFunc("/test2", test2Handler)
 
-	http.ListenAndServe(":8080", loggingMiddleware(mux))
+	http.ListenAndServe(":8080", logger(mux))
 }
