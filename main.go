@@ -8,6 +8,10 @@ func main () {
 		fmt.Fprint(w, "Hellow World!")
 	}
 
-	http.HandleFunc("/", testHandler)
-	http.ListenAndServe(":8080", nil);
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/", testHandler)
+
+	http.ListenAndServe(":8080", mux)
+
 }
