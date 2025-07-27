@@ -3,11 +3,11 @@ package main
 import "fmt"
 import "net/http"
 
-func main () {
-	testHandler := func (w http.ResponseWriter, req *http.Request) {
-		fmt.Fprint(w, "Hellow World!")
-	}
+func testHandler(w http.ResponseWriter, req *http.Request) {
+	fmt.Fprint(w, "Hellow World!")
+}
 
+func main () {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", testHandler)
