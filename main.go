@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"log/slog"
+	"net/http"
 )
 
 func logger(next http.Handler) http.Handler {
@@ -20,8 +20,7 @@ func test2Handler(w http.ResponseWriter, req *http.Request) {
 	w.Write([]byte("Hello two!"))
 }
 
-
-func main () {
+func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", testHandler)
