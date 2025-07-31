@@ -3,7 +3,16 @@ package main
 import (
 	"log/slog"
 	"net/http"
+	"os"
 )
+
+func classHandler(w http.ResponseWriter, req *http.Request) {
+	// read file
+	bytes, err := os.ReadFile(fmt.Sprintf("data/
+	/ get class id from req path and get obj val by this key
+
+	// create struct and add it to w writer as json
+}
 
 func logger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
@@ -25,6 +34,7 @@ func main() {
 
 	mux.HandleFunc("/", testHandler)
 	mux.HandleFunc("/test2", test2Handler)
+	mux.HandleFunc("/classes/{id}", classHandler)
 
 	http.ListenAndServe(":8080", logger(mux))
 }
