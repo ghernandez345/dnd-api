@@ -5,11 +5,16 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"unicode/utf8"
 )
+
+func capitalize(s string) string {
+	r, _ := utf8.DecodeRuneInString(s)
+}
 
 func classHandler(w http.ResponseWriter, req *http.Request) {
 	// read file
-	bytes, err := os.ReadFile(fmt.Sprintf("data/%s/5e-SRD-%s", req.PathValue("year"), req.PathValue("id")))
+	bytes, err := os.ReadFile(fmt.Sprintf("data/%s/5e-SRD-%s", req.PathValue("year"), capitalize(req.PathValue("id"))))
 	if err != nil {
 		w.Write([]byte(err.Error()))
 		return
