@@ -55,6 +55,7 @@ func classHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(classBytes)
 }
 
