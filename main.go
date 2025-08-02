@@ -66,14 +66,6 @@ func logger(next http.Handler) http.Handler {
 	})
 }
 
-func testHandler(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("Hello World!"))
-}
-
-func test2Handler(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("Hello two!"))
-}
-
 func main() {
 	mux := http.NewServeMux()
 
