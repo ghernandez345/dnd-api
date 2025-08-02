@@ -21,10 +21,7 @@ func getVal(id string, jsonBlob []byte) (*class, error) {
 		return nil, errors.New("no json data")
 	}
 
-	fmt.Printf("%+v", classes)
-
 	for _, val := range classes {
-		fmt.Println(val.Index)
 		if val.Index == id {
 			return &val, nil
 		}
@@ -59,9 +56,6 @@ func classHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.Write(classBytes)
-	// get class id from req path and get obj val by this key
-
-	// create struct and add it to w writer as json
 }
 
 func logger(next http.Handler) http.Handler {
@@ -82,8 +76,6 @@ func test2Handler(w http.ResponseWriter, req *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", testHandler)
-	mux.HandleFunc("/test2", test2Handler)
 	mux.HandleFunc("/{year}/classes/{id}", classHandler)
 
 	http.ListenAndServe(":8080", logger(mux))
