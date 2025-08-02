@@ -10,6 +10,13 @@ import (
 	"strings"
 )
 
+
+type resource struct {
+	path: 
+}
+
+
+
 type class struct {
 	Index string `json:"index"`
 }
@@ -39,12 +46,12 @@ func capitalize(s string) string {
 
 func classHandler(w http.ResponseWriter, req *http.Request) {
 	// read file
-	bytes, err := os.ReadFile(fmt.Sprintf("data/%s/5e-SRD-Classes.json", req.PathValue("year")))
+	jsonBytes, err := os.ReadFile(fmt.Sprintf("data/%s/5e-SRD-Classes.json", req.PathValue("year")))
 	if err != nil {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	class, err := getVal(req.PathValue("id"), bytes)
+	class, err := getVal(req.PathValue("id"), jsonBytes)
 	if err != nil {
 		w.Write([]byte(err.Error()))
 		return
